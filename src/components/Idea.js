@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react'
 
-const Idea = ({idea}) =>
-  <div className="title key={idea.id}">
-    {console.log(idea)}
-    <h4> { idea.title } </h4>
-    <p> { idea.body} </p>
-  </div>
+class Idea extends Component {
 
 
-  export default Idea;
+    handleClick = () => {
+      this.props.onClick(this.props.idea.id);
+    }
+
+    enableEditing = (id) => {
+      this.setState({editingIdeaId: id})
+    }
+
+
+  render () {
+    return(
+      <div className="title">
+        <h4 onClick={this.handleClick}>
+          {this.props.idea.title}
+        </h4>
+        <p onClick={this.handleClick}>
+          {this.props.idea.body}
+        </p>
+      </div>
+    )
+  }
+}
+
+export default Idea
